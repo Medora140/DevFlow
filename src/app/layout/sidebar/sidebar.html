@@ -1,0 +1,61 @@
+<aside class="sidebar">
+  <a class="brand" routerLink="/dashboard">
+    <span class="brand-mark"> D </span>
+    <span>DevFlow</span>
+    <span class="brand-badge">BETA</span>
+  </a>
+
+  <div class="workspace">
+    <div class="workspace-avatar">D</div>
+    <div class="workspace-info">
+      <strong>DevFlow Studio</strong>
+      <span>Free workspace</span>
+    </div>
+    <span class="workspace-menu">⌄</span>
+  </div>
+  <p class="nav-label">WORKSPACE</p>
+  <nav class="navigation">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span class="nav-icon">◫</span>
+      <span> Dashboard </span>
+    </a>
+    <a routerLink="/projects" routerLinkActive="active">
+      <span class="nav-icon">▧</span>
+      <span>Projects</span>
+    </a>
+    <a routerLink="/tasks" routerLinkActive="active">
+      <span class="nav-icon">☷</span>
+      <span>My Tasks</span>
+    </a>
+    <a routerLink="/team" routerLinkActive="active">
+      <span class="nav-icon">♧</span>
+      <span>Team</span>
+    </a>
+  </nav>
+  <div class="sidebar-bottom">
+    <p class="nav-label">PREFERENCES</p>
+    <nav class="navigation">
+      <a routerLink="/settings" routerLinkActive="active">
+        <span class="nav-icon">⚙</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+    <div class="upgrade-card">
+      <strong>Level up your workflow</strong>
+      <p>Keep your team's work organized in one place.</p>
+      <button type="button">Explore features</button>
+    </div>
+    <div class="profile">
+      <div class="profile-avatar">M</div>
+      <div class="profile-info">
+        <strong>Medora</strong>
+        <span>Developer</span>
+      </div>
+      <span class="profile-menu">...</span>
+    </div>
+  </div>
+</aside>

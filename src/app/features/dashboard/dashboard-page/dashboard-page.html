@@ -1,0 +1,104 @@
+<section class="dashboard">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">TUESDAY, OCTOBER 20</p>
+      <h1>Good evening, Medora <span>✦</span></h1>
+      <p class="subtitle">Here's what's happening with your projects today.</p>
+    </div>
+    <button class="primary-button" type="button"><span>+</span> New Project</button>
+  </div>
+
+  <div class="stats-grid">
+    @for (stat of stats; track stat.label) {
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-label">{{ stat.label }}</span>
+          <span class="stat-icon">{{ stat.icon }}</span>
+        </div>
+        <strong class="stat-value">{{ stat.value }}</strong>
+        <p class="stat-change">{{ stat.change }}</p>
+      </article>
+    }
+  </div>
+  <div class="content-grid">
+    <section class="panel projects-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Active Projects</h2>
+          <p>Your team's current work</p>
+        </div>
+        <a routerLink="/projects">View all -></a>
+      </div>
+      <div class="project-list">
+        @for (project of projects; track project.name) {
+          <article class="project-item">
+            <div class="project-top">
+              <div class="project-identity">
+                <div
+                  class="project-icon"
+                  [style.background]="project.color"
+                  [style.color]="project.textColor"
+                >
+                  {{ project.code }}
+                </div>
+                <div>
+                  <h3>
+                    <a class="project-title-link" [routerLink]="['/projects', project.code]">
+                      {{ project.name }}
+                    </a>
+                  </h3>
+                  <p>{{ project.tasks }} tasks completed</p>
+                </div>
+              </div>
+              <span class="status">{{ project.status }}</span>
+            </div>
+            <div class="progress-info">
+              <span>Progress</span>
+              <strong>{{ project.progress }}%</strong>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" [style.width.%]="project.progress"></div>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+    <section class="panel activity-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Recent Activity</h2>
+          <p>Latest updates from your team</p>
+        </div>
+      </div>
+      <div class="activity-list">
+        @for (activity of activities; track activity.person + activity.target) {
+          <article class="activity-item">
+            <div
+              class="activity-avatar"
+              [style.background]="activity.color"
+              [style.color]="activity.textColor"
+            >
+              {{ activity.initials }}
+            </div>
+            <div class="activity-description">
+              <p>
+                <strong>{{ activity.person }}</strong>
+                {{ activity.action }}
+                <strong>{{ activity.target }}</strong>
+              </p>
+              <span>{{ activity.time }}</span>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+  <section class="welcome-banner">
+    <div>
+      <p class="banner-label">YOUR WORKSPACE, YOU FLOW</p>
+      <h2>Great work happens when teams flow together</h2>
+      <p>Organize you projects, stay focused, and celebrate progress.</p>
+    </div>
+    <div class="banner-decoration">✳</div>
+  </section>
+</section>

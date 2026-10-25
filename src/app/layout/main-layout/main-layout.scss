@@ -1,0 +1,31 @@
+@use 'sass:color';
+
+:host {
+  // targets custom element wrapper
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #1e293b;
+
+  .main-area {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    .page-content {
+      flex: 1;
+      padding: 32px;
+      overflow-x: auto;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .page-content {
+    padding: 20px 16px;
+  }
+}

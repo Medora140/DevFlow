@@ -1,0 +1,121 @@
+@use 'sass:color';
+
+:host {
+  display: block;
+}
+.topbar {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 32px;
+  border-bottom: 1px solid #e9edf4;
+  background: white;
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #94a3b8;
+    font-size: 13px;
+    strong {
+      color: #1e293b;
+      font-weight: 650;
+    }
+    .seperator {
+      color: #cbd5e1;
+    }
+  }
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .search-box {
+      display: flex;
+      width: 250px;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 11px;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      background: #f8fafc;
+      color: #94a3b8;
+
+      input {
+        width: 100%;
+        min-width: 0;
+        border: 0;
+        outline: none;
+        background: transparent;
+        color: #334155;
+        font: inherit;
+        font-size: 12px;
+      }
+
+      kbd {
+        white-space: nowrap;
+        padding: 3px 5px;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        background: white;
+        font-size: 9px;
+      }
+    }
+    .icon-button {
+      position: relative;
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid #e2e8f0;
+      border-radius: 9px;
+      background: white;
+      color: #475569;
+      cursor: pointer;
+
+      .notification-dot {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #f97316;
+      }
+    }
+  }
+  &-avatar {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 50%;
+    background: #ede9fe;
+    color: #6d28d9;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 16px;
+  }
+  .search-box {
+    width: 160px;
+  }
+  .search-box kbd,
+  .breadcrumb span:first-child,
+  .separator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-box {
+    width: 120px;
+  }
+  .topbar-actions {
+    gap: 8px;
+  }
+}
