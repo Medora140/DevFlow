@@ -1,3 +1,143 @@
-@if(project(); as project){
-    <section class="details-page"></section>
+@if (project(); as project) {
+  <!-- checks if a project exists before displaying results -->
+  <section class="details-page">
+    <a routerLink="/projects" class="back-link"> ← Back to projects </a>
+    <header class="project-header">
+      <div class="project-heading">
+        <div class="project-symbol" [style.background]="project.color">
+          {{ project.name.charAt(0).toUpperCase() }}
+        </div>
+        <div class="heading-text">
+          <div class="eyebrow">PROJECT OVERVIEW</div>
+          <h1>{{ project.name }}</h1>
+          <p>{{ project.description || 'No description provided.' }}</p>
+        </div>
+      </div>
+      <label class="status-field">
+        <span>Project status</span>
+        <select [value]="project.status" (change)="updateProjectStatus($any($event.target).value)">
+          <option value="Planned">Planned</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </label>
+    </header>
+    <div class="metrics-grid">
+      <article class="metric-card">
+        <span>Completion</span>
+        <strong>{{ project.progress }}%</strong>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="project.progress"></div>
+        </div>
+      </article>
+      <article class="metric-card">
+        <span>Team members</span>
+        <strong>{{ project.members.length }}</strong>
+        <p>Contributors assigned</p>
+      </article>
+      <article class="metric-card">
+        <span>Project status</span>
+        <strong class="status-value">{{ project.status }}</strong>
+        <p>Current project stage</p>
+      </article>
+      <article class="metric-card">
+        <span>Due date</span>
+        <strong class="date-value">
+          {{ project.dueDate ? (project.dueDate | date: 'mediumDate') : 'Not set' }}
+        </strong>
+        <p>Target completion date</p>
+      </article>
+    </div>
+    <section class="content-panel">
+      <div class="panel-header">
+        <div>
+          <h2>Project tasks</h2>
+          <p>Track the work required to complete this project.</p>
+        </div>
+        <span class="task-count"> {{ tasks.length }} tasks </span>
+      </div>
+      <div class="task-table-wrapper">
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>Tasks</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Assignee</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (task of tasks; track task.id) {
+              <tr>
+                <td>
+                  <span class="task-title">
+                    <span class="task-check" [class.checked]="task.status">
+                      {{ task.status === 'Completed' ? '✓' : '' }}
+                    </span>
+                    {{ task.title }}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    class="task-status"
+                    [class.done]="task.status === 'Completed'"
+                    [class.active]="task.status === 'In Progress'"
+                  >
+                    {{ task.status }}
+                  </span>
+                </td>
+                <td>
+                  <span
+                    class="priority"
+                    [class.high]="task.priority === 'High'"
+                    [class.medium]="task.priority === 'Medium'"
+                    [class.low]="task.priority === 'Low'"
+                  >
+                    {{ task.priority }}
+                  </span>
+                </td>
+                <td>
+                  <span class="assignee">
+                    {{ task.assignee }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="content-panel info-panel">
+      <h2>Project information</h2>
+      <div class="info-row">
+        <span> Project ID </span>
+        <code>
+          {{ project.id }}
+        </code>
+      </div>
+      <div class="info-row">
+        <span>Created on</span>
+        <strong>
+          {{ project.createdAt | date: 'mediumDate' }}
+        </strong>
+      </div>
+      <div class="info-row">
+        <span>Assigned members</span>
+        <div class="member-list">
+          @for (member of project.members; track member) {
+            <span class="member-chip">
+              {{ member }}
+            </span>
+          }
+        </div>
+      </div>
+    </section>
+  </section>
+} @else {
+  <section class="not-found">
+    <div class="not-found-icon">?</div>
+    <h1>Project not found</h1>
+    <p>This project doesn't exist or isn't available in the current session</p>
+    <a routerLink="/projects" class="back-button"> Back to projects </a>
+  </section>
 }

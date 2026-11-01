@@ -18,7 +18,7 @@ export class DashboardPage {
   readonly projects = [
     {
       name: 'Website Redesign',
-      code: 'WR',
+      code: 'project-1',
       color: '#ede9fe',
       textColor: '#6d28d9',
       progress: 75,
@@ -27,7 +27,7 @@ export class DashboardPage {
     },
     {
       name: 'Mobile Application',
-      code: 'MA',
+      code: 'project-2',
       color: '#dbeafe',
       textColor: '#1d4ed8',
       progress: 45,
@@ -36,7 +36,7 @@ export class DashboardPage {
     },
     {
       name: 'API Integration',
-      code: 'API',
+      code: 'project-3',
       color: '#d1fae5',
       textColor: '#047857',
       progress: 90,

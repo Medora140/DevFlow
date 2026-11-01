@@ -36,29 +36,29 @@ export class ProjectDetails {
     },
     {
       id: 'task-2',
-      title:'Build reusable UI components',
+      title: 'Build reusable UI components',
       status: 'In Progress',
       priority: 'High',
       assignee: 'JD',
     },
     {
       id: 'task-3',
-      title:'Connect the API',
+      title: 'Connect the API',
       status: 'In Progress',
       priority: 'Medium',
       assignee: 'SL',
     },
     {
       id: 'task-4',
-      title:'Write component tests',
+      title: 'Write component tests',
       status: 'Planned',
       priority: 'Low',
       assignee: 'MK',
     },
   ];
-  updateProjectStatus(status: ProjectStatus):void{
+  updateProjectStatus(status: ProjectStatus): void {
     const project = this.project();
-    if(project){
+    if (project) {
       this.projectsService.updateStatus(project.id, status);
     }
   }
