@@ -71,42 +71,6 @@ The `formError` is set, but `resetForm()` is never called. More importantly, whe
 
 ---
 
-### 2.9 `projects-page.scss` — Status badge color classes are nested incorrectly (lines 209–221)
-```scss
-.status-badge {
-  .status-active { ... }   // ❌ — Angular applies class ON the element, not inside it
-  .status-planned { ... }
-  .status-completed { ... }
-}
-```
-**Impact:** The status badge colors (`status-active`, `status-planned`, `status-completed`) **never apply** because they are nested inside `.status-badge` in SCSS, meaning the CSS selector becomes `.status-badge .status-active` (a child). But in the template, both classes are on the **same element**: `class="status-badge status-active"`. The correct SCSS would be `&.status-active { ... }`.
-
----
-
-### 2.10 `sidebar.scss` — `.profile` is nested inside `.upgrade-card` by mistake (lines 152–189)
-```scss
-.upgrade-card {
-  ...
-  .profile {   // ❌ nested inside .upgrade-card — should be a sibling
-    ...
-  }
-}
-```
-**Impact:** The `.profile` block at the bottom of the sidebar is a sibling of `.upgrade-card` in the HTML (line 52–59 of `sidebar.html`), but in the SCSS it is nested inside `.upgrade-card`. This means all `.profile-*` styles will not apply unless `.profile` is actually inside `.upgrade-card`. The profile section at the bottom will be largely unstyled.
-
----
-
-### 2.11 `navbar.html` — Notification dot class mismatch (line 15)
-```html
-<!-- Template uses: -->
-<span class="notifications-dot"></span>
-
-<!-- SCSS defines: -->
-.notification-dot { ... }   // ← missing the 's'
-```
-**Impact:** The orange notification dot is never visible.
-
----
 
 ### 2.12 `navbar.html` — Static, non-functional breadcrumb (lines 3–6)
 ```html

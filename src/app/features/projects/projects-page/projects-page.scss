@@ -206,15 +206,15 @@
             font-weight: 600;
             white-space: nowrap;
 
-            .status-active {
+            &.status-active {
               background: #eff6ff;
               color: #2563eb;
             }
-            .status-planned {
+            &.status-planned {
               background: #fff7ed;
               color: #c2410c;
             }
-            .status-completed {
+            &.status-completed {
               background: #ecfdf5;
               color: #047857;
             }
