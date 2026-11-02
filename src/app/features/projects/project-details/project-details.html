@@ -54,7 +54,7 @@
           <h2>Project tasks</h2>
           <p>Track the work required to complete this project.</p>
         </div>
-        <span class="task-count"> {{ tasks.length }} tasks </span>
+        <span class="task-count"> {{ tasks().length }} tasks </span>
       </div>
       <div class="task-table-wrapper">
         <table class="task-table">
@@ -67,7 +67,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (task of tasks; track task.id) {
+            @for (task of tasks(); track task.id) {
               <tr>
                 <td>
                   <span class="task-title">
@@ -78,13 +78,18 @@
                   </span>
                 </td>
                 <td>
-                  <span
-                    class="task-status"
-                    [class.done]="task.status === 'Completed'"
-                    [class.active]="task.status === 'In Progress'"
-                  >
-                    {{ task.status }}
-                  </span>
+                 <select class="task-status"
+                 [class.done]="task.status==='Completed'"
+                 [class.active]="task.status==='In Progress'"
+                 [class.planned]="task.status==='Todo'"
+                 [value]="task.status"
+                 (change)="updateTaskStatus(task.id, $any($event.target).value)"
+                 [attr.aria-label]="'Update status for '+task.title"
+                 >
+                   <option value="Todo">Todo</option>
+                   <option value="In Progress">In Progress</option>
+                   <option value="Completed">Completed</option>
+                 </select>
                 </td>
                 <td>
                   <span
