@@ -151,7 +151,7 @@
 </section>
 
 @if (showCreateModal()) {
-  <div class="modal-backdrop" (click)="cloaseCreateModal()">
+  <div class="modal-backdrop" (click)="closeCreateModal()">
     <section
       class="project-modal"
       role="dialog"
@@ -169,7 +169,7 @@
           class="close-button"
           type="button"
           aria-label="Close dialog"
-          (click)="cloaseCreateModal()"
+          (click)="closeCreateModal()"
         >
           ×
         </button>
@@ -208,7 +208,7 @@
           </label>
           <label class="form-field">
             <span>Due date</span>
-            <input type="data" name="projectDueDate" [(ngModel)]="projectDueDate" />
+            <input type="date" name="projectDueDate" [(ngModel)]="projectDueDate" />
           </label>
         </div>
         @if (formError) {
@@ -216,7 +216,7 @@
         }
 
         <footer class="modal-actions">
-          <button class="secondary-button" type="button" (click)="cloaseCreateModal()">
+          <button class="secondary-button" type="button" (click)="closeCreateModal()">
             Cancel
           </button>
           <button class="primary-button" type="submit">Create project</button>

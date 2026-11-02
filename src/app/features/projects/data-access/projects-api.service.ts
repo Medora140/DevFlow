@@ -15,7 +15,7 @@ export class ProjectsApiService {
       dueDate: '2026-11-15',
       members: ['MG', 'JD', 'SL'],
       color: '#ede9fe',
-      createdAt: '2026-101-01',
+      createdAt: '2026-01-01',
     },
     {
       id: 'project-2',

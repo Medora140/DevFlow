@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 export class DashboardPage {
   readonly stats = [
     { label: 'Total Projects', value: '12', change: '+2 this month', icon: '▧' },
-    { label: 'Tasks Completed', value: '48', chnage: '+12 this week', icon: '✓' },
+    { label: 'Tasks Completed', value: '48', change: '+12 this week', icon: '✓' },
     { label: 'In Progress', value: '8', change: '3 due this week', icon: '◷' },
     { label: 'Team Members', value: '6', change: 'Across 3 projects', icon: '♧' },
   ];

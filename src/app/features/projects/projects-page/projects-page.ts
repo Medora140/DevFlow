@@ -56,7 +56,7 @@ export class ProjectsPage {
     this.showCreateModal.set(true);
   }
 
-  cloaseCreateModal():void{
+  closeCreateModal():void{
     this.showCreateModal.set(false);
   }
 
@@ -82,7 +82,7 @@ export class ProjectsPage {
       members: ['MG'],
       color: '#ede9fe',
     });
-    this.cloaseCreateModal();
+    this.closeCreateModal();
   }
   updateStatus(project: Project, status: ProjectStatus): void{
     this.projectsService.updateStatus(project.id, status);
