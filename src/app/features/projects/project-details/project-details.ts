@@ -57,6 +57,11 @@ export class ProjectDetails {
       this.projectsService.updateStatus(project.id, status);
     }
   }
+
+  toggleTaskCompletion(taskId: string, currentStatus: TaskStatus): void {
+    const newStatus: TaskStatus = currentStatus === 'Completed' ? 'Todo' : 'Completed';
+    this.tasksService.updateTaskStatus(taskId, newStatus);
+  }
   updateTaskStatus(taskId: string, status: TaskStatus): void {
     this.tasksService.updateTaskStatus(taskId, status);
   }
