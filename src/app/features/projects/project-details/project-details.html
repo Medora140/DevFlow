@@ -62,8 +62,12 @@
         </div>
       </div>
       @if (showCreateTaskForm()) {
-        <form [formGroup]="taskForm" (ngSubmit)="createTask()" class="create-task-form">
-          <h3>Create a new task</h3>
+        <form [formGroup]="taskForm" (ngSubmit)="saveTask()" class="create-task-form">
+          @if (editingTaskId()) {
+            <h3>Edit task</h3>
+          } @else {
+            <h3>Create a new task</h3>
+          }
           <div class="form-field">
             <label for="task-title"> Task title *</label>
             <input
@@ -114,7 +118,7 @@
           </div>
           <div class="form-actions">
             <button type="button" class="cancel-btn" (click)="cancelCreateTask()">Cancel</button>
-            <button type="submit" class="save-task-btn">Create Task</button>
+            <button type="submit" class="save-task-btn">{{ editingTaskId() ? 'Save Changes' : 'Create Task' }}</button>
           </div>
         </form>
       }
@@ -126,6 +130,7 @@
               <th>Status</th>
               <th>Priority</th>
               <th>Assignee</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -179,6 +184,11 @@
                   <span class="assignee">
                     {{ task.assignee }}
                   </span>
+                </td>
+                <td>
+                  <button type="button" class="edit-task-btn" (click)="openEditTaskForm(task)" [attr.aria-label]="'Edit ' + task.title">
+                    Edit
+                  </button>
                 </td>
               </tr>
             }
