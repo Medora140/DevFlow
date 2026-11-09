@@ -54,8 +54,61 @@
           <h2>Project tasks</h2>
           <p>Track the work required to complete this project.</p>
         </div>
-        <span class="task-count"> {{ tasks().length }} tasks </span>
+        <div class="task-actions">
+          <span class="task-count">{{ tasks().length }} tasks</span>
+          <button type="button" (click)="openCreateTaskForm()" class="create-task-btn">
+            + Create task
+          </button>
+        </div>
       </div>
+      @if (showCreateTaskForm()){
+        <form [formGroup]="taskForm" (ngSubmit)="createTask()" class="create-task-form">
+          <h3>Create a new task</h3>
+          <div class="form-field">
+            <label for="task-title"> Task title *</label>
+            <input type="text" id="task-title" formControlName="title" placeholder="Enter task title"/>
+            @if(
+              taskForm.controls.title.touched && taskForm.controls.title.hasError('required')
+            ){
+              <small class="field-error">
+                Task title is required
+              </small>
+            }
+            @if (taskForm.controls.title.touched && taskForm.controls.title.hasError('minlength')) {
+              <small class="field-error">
+                Title must contain at least 3 characters
+              </small>
+            }
+          </div>
+          <div class="form-field">
+            <label for="task-description"> Description </label>
+            <textarea id="task-description" formControlName="description" placeholder="Describe the task" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="task-priority">Priority</label>
+              <select id="task-priority" formControlName="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="task-assignee">Assignee</label>
+              <input id="task-assignee" type="text" formControlName="assignee" placeholder="Enter assignee name"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="task-due-date">Due date</label>
+            <input id="task-due-date" type="date" formControlName="dueDate"/>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" (click)="cancelCreateTask()">Cancel</button>
+            <button type="submit" class="save-task-btn">Create Task</button>
+          </div>
+        </form>
+      }
       <div class="task-table-wrapper">
         <table class="task-table">
           <thead>
