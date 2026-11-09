@@ -91,12 +91,6 @@ export class ProjectsApiService {
           ? {
               ...project,
               status,
-              progress:
-                status === 'Completed'
-                  ? 100
-                  : status === 'Planned'
-                    ? 0
-                    : Math.min(project.progress, 99),
             }
           : project,
       ),

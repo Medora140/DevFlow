@@ -25,9 +25,9 @@
     <div class="metrics-grid">
       <article class="metric-card">
         <span>Completion</span>
-        <strong>{{ project.progress }}%</strong>
+        <strong>{{ projectProgress() }}%</strong>
         <div class="progress-track">
-          <div class="progress-fill" [style.width.%]="project.progress"></div>
+          <div class="progress-fill" [style.width.%]="projectProgress()"></div>
         </div>
       </article>
       <article class="metric-card">

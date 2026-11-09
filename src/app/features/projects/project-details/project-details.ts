@@ -51,6 +51,16 @@ export class ProjectDetails {
     }
     return this.tasksService.tasks().filter((task) => task.projectId === projectId);
   });
+
+  readonly projectProgress=computed(()=>{
+    const currentTasks=this.tasks();
+    if(currentTasks.length===0){
+      return 0;
+    }
+    const completedTasks=currentTasks.filter(task=>task.status==='Completed').length;
+    return Math.round((completedTasks/currentTasks.length)*100);
+  });
+  
   updateProjectStatus(status: ProjectStatus): void {
     const project = this.project();
     if (project) {
