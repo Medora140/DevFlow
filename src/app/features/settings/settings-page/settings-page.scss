@@ -1,0 +1,63 @@
+.page {
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  color: #202433;
+  h1,
+  p {
+    margin-top: 0;
+  }
+  .eyebrow {
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: #697386;
+  }
+  .intro,
+  .note {
+    color: #667085;
+  }
+  .panel {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+    padding: 20px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+    label {
+      display: grid;
+      gap: 7px;
+      font-size: 14px;
+    }
+    .check {
+      display: flex;
+      align-items: center;
+    }
+    button {
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 8px;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      background: #5b4bdb;
+    }
+    .success {
+      margin: 0;
+      color: #087443;
+    }
+  }
+}
+input:not([type='checkbox']) {
+    // CSS rule that styles text-like <input> fields while intentionally skipping checkboxes (like your emailUpdates checkbox).
+  width: min(100%, 360px);
+  padding: 10px 12px;
+  border: 1px solid #d8dce5;
+  border-radius: 8px;
+  font: inherit;
+}
