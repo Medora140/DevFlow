@@ -1,1 +1,27 @@
-<p>team-page works!</p>
+<section class="page">
+  <p class="eyebrow">WORKSPACE / TEAM</p>
+  <h1>Team</h1>
+  <p class="intro">
+    Sample workspace members. Member management is not connected to an account system.
+  </p>
+  <div class="grid">
+    @for (member of members; track member.email) {
+      <article class="card">
+        <span class="avatar">
+          {{ member.initials }}
+        </span>
+        <div>
+          <h2>
+            {{ member.name }}
+          </h2>
+          <p>
+            {{ member.email }}
+          </p>
+          <span class="role">
+            {{ member.role }}
+          </span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,49 @@
+.page {
+  padding: 28px;
+  color: #202433;
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: #697386;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: white;
+      .avatar {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-weight: 700;
+        background: #ede9fe;
+        color: #5b4bdb;
+      }
+      h2,
+      p {
+        margin: 0 0 5px;
+        font-size: 15px;
+      }
+      .role {
+        font-size: 13px;
+        color: #667085;
+      }
+    }
+  }
+}
+
+.intro,
+.card p {
+  color: #667085;
+}
