@@ -9,7 +9,6 @@ import { TasksApiService } from '../data-access/tasks-api.service';
 
 @Component({
   selector: 'app-projects-page',
-  standalone: true,
   imports: [FormsModule, DatePipe, RouterLink],
   templateUrl: './projects-page.html',
   styleUrl: './projects-page.scss',

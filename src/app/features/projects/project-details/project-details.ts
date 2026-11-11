@@ -15,7 +15,6 @@ import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-project-details',
-  standalone: true,
   imports: [DatePipe, RouterLink, ReactiveFormsModule],
   templateUrl: './project-details.html',
   styleUrl: './project-details.scss',

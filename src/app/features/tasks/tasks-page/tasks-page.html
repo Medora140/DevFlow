@@ -1,0 +1,63 @@
+<section class="page">
+  <header class="heading">
+    <div>
+      <p class="eyebrow">WORKSPACE / TASKS</p>
+      <h1>My Tasks</h1>
+      <p>Review and update tasks across your projects</p>
+    </div>
+  </header>
+  <div class="toolbar">
+    <input
+      type="search"
+      aria-label="Search tasks"
+      placeholder="Search tasks..."
+      [value]="searchTerm()"
+      (input)="searchTerm.set($any($event.target).value)"
+    />
+    <!-- $any(...): Bypasses TypeScript's strict template type checking -->
+    <select
+      aria-label="Filter tasks by status"
+      [value]="statusFilter()"
+      (change)="statusFilter.set($any($event.target).value)"
+    >
+    <!-- aria-label: Adds an invisible accessibility label so screen readers announce the purpose of the dropdown to visually impaired users, even without a visible <label> tag -->
+      <option value="All">All statuses</option>
+      <option value="Todo">Todo</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+  <div class="task-list">
+    @for (task of filteredTasks(); track task.id) {
+      <article class="task">
+        <div>
+          <h2>
+            {{ task.title }}
+          </h2>
+          <p>
+            {{ task.description || 'No description' }}
+          </p>
+          <a [routerLink]="['/projects', task.projectId]">
+            {{ projectName(task.projectId) }}
+          </a>
+        </div>
+        <div class="task-meta">
+          <span> {{ task.priority }} priority </span>
+          <select
+            [value]="task.status"
+            [attr.aria-label]="'Update status for' + task.title"
+            (change)="updateStatus(task.id, $any($event.target).value)"
+          >
+            <option value="Todo">Todo</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </article>
+    }
+    <!-- renders a fallback block of HTML automatically whenever the list inside an @for loop has zero items. -->
+    @empty {
+      <p class="empty">No tasks match these filters</p>
+    }
+  </div>
+</section>

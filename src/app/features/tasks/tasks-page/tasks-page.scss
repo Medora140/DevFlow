@@ -1,0 +1,84 @@
+.page {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+  color: #202433;
+  .heading {
+    h1,
+    p {
+      margin: 4px 0;
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #697386;
+    }
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .task-list {
+    display: grid;
+    gap: 12px;
+    .task {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: white;
+      h2,
+      p {
+        margin: 0 0 7px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+      p,
+      a,
+      .task-meta {
+        color: #667085;
+        font-size: 14px;
+      }
+      .task-meta {
+        display: grid;
+        align-content: center;
+        gap: 8px;
+        min-width: 150px;
+      }
+    }
+    .empty {
+      padding: 28px;
+      border: 1px dashed #cbd0da;
+      border-radius: 12px;
+      text-align: center;
+      color: #667085;
+    }
+  }
+}
+
+@media(max-width: 650px){
+    .page{
+        padding: 18px;
+    }
+    .task{
+        flex-direction: column;
+    }
+}
+
+input,
+select {
+  padding: 10px 12px;
+  border: 1px solid #d8dce5;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+}
+
+input {
+  min-width: min(260px, 100%);
+}
