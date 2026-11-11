@@ -190,6 +190,23 @@
                     Edit
                   </button>
                 </td>
+                <td>
+                  @if(deletingTaskId()===task.id){
+                    <div class="delete-confirmation">
+                      <span>Delete this task?</span>
+                      <button class="confirm-delete-btn" type="button" (click)="confirmDeleteTask()">
+                        Yes
+                      </button>
+                      <button class="cancel-delete-btn" type="button" (click)="cancelDeleteTask()">No</button>
+                    </div>
+                  } @else {
+                    <div class="task-row-actions">
+                      <button class="delete-task-btn" type="button" (click)="requestDeleteTask(task.id)">
+                        Delete
+                      </button>
+                    </div>
+                  }
+                </td>
               </tr>
             }
           </tbody>

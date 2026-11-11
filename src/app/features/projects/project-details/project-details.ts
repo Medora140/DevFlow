@@ -21,16 +21,17 @@ import { signal } from '@angular/core';
   styleUrl: './project-details.scss',
 })
 export class ProjectDetails {
-  private readonly fb=inject(FormBuilder);
-  readonly showCreateTaskForm= signal(false);
-  readonly editingTaskId=signal<string|null>(null);
-  readonly taskForm=this.fb.nonNullable.group({
-    title: ['',[Validators.required, Validators.minLength(3)]],
+  readonly deletingTaskId = signal<string | null>(null);
+  private readonly fb = inject(FormBuilder);
+  readonly showCreateTaskForm = signal(false);
+  readonly editingTaskId = signal<string | null>(null);
+  readonly taskForm = this.fb.nonNullable.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
     description: [''],
     priority: ['Medium' as TaskPriority],
     assignee: [''],
     dueDate: [''],
-  })
+  });
   private readonly route = inject(ActivatedRoute);
   private readonly projectsService = inject(ProjectsApiService);
   private readonly tasksService = inject(TasksApiService);
@@ -52,13 +53,13 @@ export class ProjectDetails {
     return this.tasksService.tasks().filter((task) => task.projectId === projectId);
   });
 
-  readonly projectProgress=computed(()=>{
-    const currentTasks=this.tasks();
-    if(currentTasks.length===0){
+  readonly projectProgress = computed(() => {
+    const currentTasks = this.tasks();
+    if (currentTasks.length === 0) {
       return 0;
     }
-    const completedTasks=currentTasks.filter(task=>task.status==='Completed').length;
-    return Math.round((completedTasks/currentTasks.length)*100);
+    const completedTasks = currentTasks.filter((task) => task.status === 'Completed').length;
+    return Math.round((completedTasks / currentTasks.length) * 100);
   });
 
   updateProjectStatus(status: ProjectStatus): void {
@@ -76,20 +77,20 @@ export class ProjectDetails {
     this.tasksService.updateTaskStatus(taskId, status);
   }
 
-  openCreateTaskForm():void{
+  openCreateTaskForm(): void {
     this.editingTaskId.set(null);
 
     this.taskForm.reset({
       title: '',
-      description:'',
-      priority:'Medium',
-      assignee:'',
-      dueDate:'',
-    })
+      description: '',
+      priority: 'Medium',
+      assignee: '',
+      dueDate: '',
+    });
     this.showCreateTaskForm.set(true);
   }
 
-  openEditTaskForm(task:Task):void{
+  openEditTaskForm(task: Task): void {
     this.editingTaskId.set(task.id);
     this.taskForm.patchValue({
       title: task.title,
@@ -100,59 +101,59 @@ export class ProjectDetails {
     });
     this.showCreateTaskForm.set(true);
   }
-  cancelCreateTask():void{
+  cancelCreateTask(): void {
     this.showCreateTaskForm.set(false);
     this.editingTaskId.set(null);
     this.taskForm.reset({
       title: '',
-      description:'',
-      priority:'Medium',
-      assignee:'',
-      dueDate:'',
-    })
+      description: '',
+      priority: 'Medium',
+      assignee: '',
+      dueDate: '',
+    });
   }
 
-  saveTask(): void{
-    if(this.taskForm.invalid){
+  saveTask(): void {
+    if (this.taskForm.invalid) {
       this.taskForm.markAllAsTouched();
       return;
     }
-    const project=this.project();
-    if(!project){
+    const project = this.project();
+    if (!project) {
       return;
     }
-    const formValue=this.taskForm.getRawValue();
+    const formValue = this.taskForm.getRawValue();
 
-    const taskData={
+    const taskData = {
       title: formValue.title.trim(),
       description: formValue.description.trim(),
       priority: formValue.priority,
       assignee: formValue.assignee.trim(),
       dueDate: formValue.dueDate,
     };
-    const taskId=this.editingTaskId();
-    if(taskId){
+    const taskId = this.editingTaskId();
+    if (taskId) {
       this.tasksService.updateTask(taskId, taskData);
-    }
-    else{
+    } else {
       this.tasksService.createTask({
-        ...taskData, projectId: project.id,
+        ...taskData,
+        projectId: project.id,
         status: 'Todo',
-      })
+      });
     }
     this.cancelCreateTask();
   }
-  createTask():void{
-    if(this.taskForm.invalid){
+  createTask(): void {
+    if (this.taskForm.invalid) {
       this.taskForm.markAllAsTouched();
       return;
     }
-    const project=this.project();
+    const project = this.project();
 
-    if(!project){
+    if (!project) {
       return;
     }
-    const formValue=this.taskForm.getRawValue();
+    const formValue = this.taskForm.getRawValue();
     this.tasksService.createTask({
       projectId: project.id,
       title: formValue.title.trim(),
@@ -163,5 +164,20 @@ export class ProjectDetails {
       dueDate: formValue.dueDate,
     });
     this.cancelCreateTask();
+  }
+
+  requestDeleteTask(taskId: string): void {
+    this.deletingTaskId.set(taskId);
+  }
+  cancelDeleteTask(): void {
+    this.deletingTaskId.set(null);
+  }
+  confirmDeleteTask(): void {
+    const taskId = this.deletingTaskId();
+    if (!taskId) {
+      return;
+    }
+    this.tasksService.deleteTask(taskId);
+    this.deletingTaskId.set(null);
   }
 }
