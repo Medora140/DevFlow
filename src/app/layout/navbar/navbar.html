@@ -2,18 +2,17 @@
   <div class="breadcrumb">
     <span>Workspace</span>
     <span class="seperator">/</span>
-    <strong>Overview</strong>
+    <strong>
+      {{pageTitle()}}
+    </strong>
   </div>
   <div class="topbar-actions">
-    <label class="search-box">
-      <span>⌕</span>
-      <input type="search" placeholder="Search anything..." />
-      <kbd>Ctrl K</kbd>
-    </label>
-    <button class="icon-button" type="button" aria-label="Notifications">
-      ♧
-      <span class="notifications-dot"></span>
-    </button>
-    <div class="topbar-avatar" aria-label="User profile">M</div>
+    <form (submit)="searchTasks($event)" class="search-box">
+      <span aria-hidden="true">⌕</span> 
+      <!-- ignore element while keeping it on the screen -->
+       <input type="search" placeholder="Search tasks" [value]="searchTerm()" (input)="searchTerm.set($any($event.target).value)">
+
+       <button type="submit">Search</button>
+    </form>
   </div>
 </header>

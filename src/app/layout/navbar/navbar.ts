@@ -33,7 +33,9 @@ export class Navbar {
     return 'Overview';
   });
 
-  searchTasks():void{
-    
+  searchTasks(event: Event):void{
+    event.preventDefault();
+    const query= this.searchTerm().trim();
+    this.router.navigate(['/tasks'], {queryParams: query? {q:query}: {}});
   }
 }
