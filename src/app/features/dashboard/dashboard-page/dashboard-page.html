@@ -13,14 +13,14 @@
   </div>
 
   <div class="stats-grid">
-    @for (project of projects(); track project.id) {
+    @for (stat of stats(); track stat.label) {
       <article class="stat-card">
         <div class="stat-top">
-          <span class="stat-label">{{ project.label }}</span>
-          <span class="stat-icon">{{ project.icon }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+          <span class="stat-icon">{{ stat.icon }}</span>
         </div>
-        <strong class="stat-value">{{ project.value }}</strong>
-        <p class="stat-change">{{ project.change }}</p>
+        <strong class="stat-value">{{ stat.value }}</strong>
+        <p class="stat-change">{{ stat.change }}</p>
       </article>
     }
   </div>
@@ -38,16 +38,12 @@
           <article class="project-item">
             <div class="project-top">
               <div class="project-identity">
-                <div
-                  class="project-icon"
-                  [style.background]="project.color"
-                  [style.color]="project.textColor"
-                >
-                  {{ project.code }}
+                <div class="project-icon" [style.background]="project.color" aria-hidden="true">
+                  {{ project.name.charAt(0).toUpperCase() }}
                 </div>
                 <div>
                   <h3>
-                    <a class="project-title-link" [routerLink]="['/projects', project.code]">
+                    <a class="project-title-link" [routerLink]="['/projects', project.id]">
                       {{ project.name }}
                     </a>
                   </h3>
@@ -60,10 +56,19 @@
               <span>Progress</span>
               <strong>{{ project.progress }}%</strong>
             </div>
-            <div class="progress-track">
+            <div
+              class="progress-track"
+              role="progressbar"
+              [attr.aria-valuenow]="project.progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [attr.aria-label]="project.name + ' progress'"
+            >
               <div class="progress-fill" [style.width.%]="project.progress"></div>
             </div>
           </article>
+        } @empty {
+          <p>No projects to show yet</p>
         }
       </div>
     </section>
@@ -93,6 +98,8 @@
               <span>{{ activity.time }}</span>
             </div>
           </article>
+        } @empty {
+          <p>No recent activity.</p>
         }
       </div>
     </section>

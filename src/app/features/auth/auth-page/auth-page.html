@@ -1,5 +1,5 @@
 <main class="auth-page">
-  <form class="auth-card" (ngSubmit)="submit()">
+  <form #authForm="ngForm" class="auth-card" (ngSubmit)="submit(authForm)" novalidate>
     <!-- event binding -->
     <a routerLink="/login" class="brand">Devflow</a>
     <!--routerLink: navigate to a different page without reloading the web browser  -->
@@ -10,20 +10,47 @@
       <p class="subtitle">Set up a demo profile to explore DevFlow</p>
       <label>
         Name
-        <input name="name" [(ngModel)]="name" required minlength="2" autocomplete="name" />
+        <input
+          #nameControl="ngModel"
+          name="name"
+          [(ngModel)]="name"
+          required
+          minlength="2"
+          autocomplete="name"
+        />
         <!-- ngModel: two-way data binding -->
       </label>
+      @if (nameControl.invalid && nameControl.touched) {
+        <small class="field-error"> Enter a name with at least 2 characters. </small>
+      }
     } @else {
       <h1>Welcome back</h1>
       <p class="subtitle">Sign in to your demo workspace</p>
     }
     <label>
       Email
-      <input name="email" [(ngModel)]="email" required type="email" autocomplete="email" />
+      <input
+        #emailControl="ngModel"
+        name="email"
+        [(ngModel)]="email"
+        required
+        type="email"
+        autocomplete="email"
+      />
     </label>
+    @if (emailControl.invalid && emailControl.touched) {
+      <small class="field-error">
+        @if (emailControl.hasError('required')) {
+          Email is required
+        } @else {
+          Enter a valid email address
+        }
+      </small>
+    }
     <label>
       Password
       <input
+        #passwordControl="ngModel"
         name="password"
         [(ngModel)]="password"
         required
@@ -32,6 +59,20 @@
         autocomplete="current-password"
       />
     </label>
+    @if (passwordControl.invalid && passwordControl.touched) {
+      <small class="field-error">
+        @if (passwordControl.hasError('required')) {
+          Password is required
+        } @else {
+          Password must be at least 6 characters
+        }
+      </small>
+    }
+    @if (validationMessage) {
+      <p class="field-error" role="alert">
+        {{ validationMessage }}
+      </p>
+    }
     <p class="hint">Demo only: any email and password that mee the form rules will work.</p>
     <button type="submit">{{ isRegister ? 'Create account' : 'Sign in' }}</button>
     <p class="switch-link">

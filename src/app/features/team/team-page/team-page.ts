@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { email } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-team-page',

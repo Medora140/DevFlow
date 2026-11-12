@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { authGuard } from './core/auth.guard';
-import { model } from '@angular/core';
-
 export const routes: Routes = [
   {
     path: 'login',

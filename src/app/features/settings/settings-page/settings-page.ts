@@ -15,7 +15,12 @@ export class SettingsPage {
   readonly emailUpdates = signal(true);
 
   saveName(): void {
-    this.auth.updateName(this.name());
+    const trimmedName = this.name().trim();
+
+    if (!trimmedName) {
+      return;
+    }
+    this.auth.updateName(trimmedName);
     this.name.set('');
     this.saved.set(true);
   }
