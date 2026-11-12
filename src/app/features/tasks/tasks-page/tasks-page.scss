@@ -61,13 +61,13 @@
   }
 }
 
-@media(max-width: 650px){
-    .page{
-        padding: 18px;
-    }
-    .task{
-        flex-direction: column;
-    }
+@media (max-width: 650px) {
+  .page {
+    padding: 18px;
+  }
+  .task {
+    flex-direction: column;
+  }
 }
 
 input,

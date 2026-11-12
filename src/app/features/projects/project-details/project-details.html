@@ -118,7 +118,9 @@
           </div>
           <div class="form-actions">
             <button type="button" class="cancel-btn" (click)="cancelCreateTask()">Cancel</button>
-            <button type="submit" class="save-task-btn">{{ editingTaskId() ? 'Save Changes' : 'Create Task' }}</button>
+            <button type="submit" class="save-task-btn">
+              {{ editingTaskId() ? 'Save Changes' : 'Create Task' }}
+            </button>
           </div>
         </form>
       }
@@ -186,22 +188,37 @@
                   </span>
                 </td>
                 <td>
-                  <button type="button" class="edit-task-btn" (click)="openEditTaskForm(task)" [attr.aria-label]="'Edit ' + task.title">
+                  <button
+                    type="button"
+                    class="edit-task-btn"
+                    (click)="openEditTaskForm(task)"
+                    [attr.aria-label]="'Edit ' + task.title"
+                  >
                     Edit
                   </button>
                 </td>
                 <td>
-                  @if(deletingTaskId()===task.id){
+                  @if (deletingTaskId() === task.id) {
                     <div class="delete-confirmation">
                       <span>Delete this task?</span>
-                      <button class="confirm-delete-btn" type="button" (click)="confirmDeleteTask()">
+                      <button
+                        class="confirm-delete-btn"
+                        type="button"
+                        (click)="confirmDeleteTask()"
+                      >
                         Yes
                       </button>
-                      <button class="cancel-delete-btn" type="button" (click)="cancelDeleteTask()">No</button>
+                      <button class="cancel-delete-btn" type="button" (click)="cancelDeleteTask()">
+                        No
+                      </button>
                     </div>
                   } @else {
                     <div class="task-row-actions">
-                      <button class="delete-task-btn" type="button" (click)="requestDeleteTask(task.id)">
+                      <button
+                        class="delete-task-btn"
+                        type="button"
+                        (click)="requestDeleteTask(task.id)"
+                      >
                         Delete
                       </button>
                     </div>

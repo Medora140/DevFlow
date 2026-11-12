@@ -1,4 +1,4 @@
-import { Component,inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 
@@ -9,11 +9,11 @@ import { AuthService } from '../../core/auth.service';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-  readonly auth= inject(AuthService); 
+  readonly auth = inject(AuthService);
   // it retrieves an instance of a service or  directly inside a component without needing a constructor
-  private readonly router=inject(Router);
+  private readonly router = inject(Router);
 
-  signOut(): void{
+  signOut(): void {
     this.auth.signOut();
     this.router.navigateByUrl('/login');
   }

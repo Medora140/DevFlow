@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../../core/auth.service';
+
+import { ProjectsApiService } from '../../projects/data-access/projects-api.service';
+import { TasksApiService } from '../../projects/data-access/tasks-api.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -8,41 +12,74 @@ import { RouterLink } from '@angular/router';
   styleUrl: './dashboard-page.scss',
 })
 export class DashboardPage {
-  readonly stats = [
-    { label: 'Total Projects', value: '12', change: '+2 this month', icon: '▧' },
-    { label: 'Tasks Completed', value: '48', change: '+12 this week', icon: '✓' },
-    { label: 'In Progress', value: '8', change: '3 due this week', icon: '◷' },
-    { label: 'Team Members', value: '6', change: 'Across 3 projects', icon: '♧' },
-  ];
-  readonly projects = [
-    {
-      name: 'Website Redesign',
-      code: 'project-1',
-      color: '#ede9fe',
-      textColor: '#6d28d9',
-      progress: 75,
-      tasks: '12/16',
-      status: 'On track',
-    },
-    {
-      name: 'Mobile Application',
-      code: 'project-2',
-      color: '#dbeafe',
-      textColor: '#1d4ed8',
-      progress: 45,
-      tasks: '9/20',
-      status: 'In progress',
-    },
-    {
-      name: 'API Integration',
-      code: 'project-3',
-      color: '#d1fae5',
-      textColor: '#047857',
-      progress: 90,
-      tasks: '18/20',
-      status: 'Almost done',
-    },
-  ];
+  private readonly router = inject(Router);
+  private projectsService = inject(ProjectsApiService);
+  private readonly tasksService = inject(TasksApiService);
+  private readonly auth = inject(AuthService);
+
+  readonly userName = computed(() => this.auth.currentUser()?.name ?? 'there'); //defines a read-only, reactive userName property that automatically returns the logged-in user's name or falls back to 'there'. Whenever currentUser updates, userName recalculates on its own without manual refresh logic.
+
+  readonly dateLabel = new Date()
+    .toLocaleDateString(undefined, {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+    })
+    .toUpperCase();
+
+  readonly projects = computed(() => {
+    const tasks = this.tasksService.tasks();
+
+    // return: sends back the entire transformed array
+    return this.projectsService
+      .projects()
+      .slice(0, 3)
+      .map((project) => {
+        const projectTasks = tasks.filter((task) => task.projectId === project.id);
+
+        const completed = projectTasks.filter((task) => task.status === 'Completed').length;
+
+        const progress = projectTasks.length
+          ? Math.round((completed / projectTasks.length) * 100)
+          : project.progress;
+
+        // inner return sends back each individual project object inside .map()
+        return {
+          ...project,
+          code: project.id,
+          progress,
+          tasks: `${completed}/${projectTasks.length}`,
+          displayStatus: project.status,
+        };
+      });
+  });
+
+  readonly stats = computed(() => {
+    const projects = this.projectsService.projects();
+    const tasks = this.tasksService.tasks();
+
+    return [
+      {
+        label: 'Total Projects',
+        value: String(projects.length),
+        change: 'In this workspace',
+        icon: '▧',
+      },
+      {
+        label: 'Tasks Completed',
+        value: String(tasks.filter((task) => task.status === 'Completed').length),
+        change: `Of ${tasks.length} sample tasks`,
+        icon: '✓',
+      },
+      {
+        label: 'In Progress',
+        value: String(tasks.filter((task) => task.status === 'In Progress').length),
+        change: 'Tasks across projects',
+        icon: '◷',
+      },
+      { label: 'Team Members', value: '4', change: 'Sample workspace members', icon: '♧' },
+    ];
+  });
 
   readonly activities = [
     {
@@ -73,4 +110,8 @@ export class DashboardPage {
       textColor: '#047857',
     },
   ];
+
+  goToProjects(): void {
+    this.router.navigateByUrl('/projects');
+  }
 }

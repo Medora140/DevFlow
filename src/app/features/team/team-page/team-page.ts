@@ -8,30 +8,30 @@ import { email } from '@angular/forms/signals';
   styleUrl: './team-page.scss',
 })
 export class TeamPage {
-  readonly members=[
+  readonly members = [
     {
-      initials:'MG',
+      initials: 'MG',
       name: 'Medora Gomes',
       email: 'medora@example.com',
-      role: 'Admin'
+      role: 'Admin',
     },
     {
-      initials:'JD',
+      initials: 'JD',
       name: 'James Davis',
       email: 'james@example.com',
-      role: 'Developer'
+      role: 'Developer',
     },
     {
-      initials:'SL',
+      initials: 'SL',
       name: 'Sarah Lee',
       email: 'sarah@example.com',
-      role: 'Designer'
+      role: 'Designer',
     },
     {
-      initials:'MK',
+      initials: 'MK',
       name: 'Michael Kim',
       email: 'michael@example.com',
-      role: 'Developer'
+      role: 'Developer',
     },
-  ]
+  ];
 }

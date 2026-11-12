@@ -1,26 +1,27 @@
-.not-found{
-    min-height: 100vh;
-    display: grid;
-    place-content: center;
-    justify-items: center;
-    gap: 10px;
-    padding: 24px;
-    text-align: center;
-    color: #202433;
+.not-found {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+  color: #202433;
 
-    .code{
-        margin: 0;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: .15em;
-        color: #5b4bdb
-    }
-    a{
-        margin-top: 8px;
-        color: #5b4bdb;
-    }
+  .code {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #5b4bdb;
+  }
+  a {
+    margin-top: 8px;
+    color: #5b4bdb;
+  }
 }
 
-h1,p{
-    margin: 0;
+h1,
+p {
+  margin: 0;
 }

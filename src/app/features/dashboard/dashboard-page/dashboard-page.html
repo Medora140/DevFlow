@@ -1,22 +1,26 @@
 <section class="dashboard">
   <div class="page-heading">
     <div>
-      <p class="eyebrow">TUESDAY, OCTOBER 20</p>
-      <h1>Good evening, Medora <span>✦</span></h1>
+      <p class="eyebrow">
+        {{ dateLabel }}
+      </p>
+      <h1>Good evening, {{ userName() }} <span>✦</span></h1>
       <p class="subtitle">Here's what's happening with your projects today.</p>
     </div>
-    <button class="primary-button" type="button"><span>+</span> New Project</button>
+    <button class="primary-button" type="button" (click)="goToProjects()">
+      <span>+</span> New Project
+    </button>
   </div>
 
   <div class="stats-grid">
-    @for (stat of stats; track stat.label) {
+    @for (project of projects(); track project.id) {
       <article class="stat-card">
         <div class="stat-top">
-          <span class="stat-label">{{ stat.label }}</span>
-          <span class="stat-icon">{{ stat.icon }}</span>
+          <span class="stat-label">{{ project.label }}</span>
+          <span class="stat-icon">{{ project.icon }}</span>
         </div>
-        <strong class="stat-value">{{ stat.value }}</strong>
-        <p class="stat-change">{{ stat.change }}</p>
+        <strong class="stat-value">{{ project.value }}</strong>
+        <p class="stat-change">{{ project.change }}</p>
       </article>
     }
   </div>
@@ -30,7 +34,7 @@
         <a routerLink="/projects">View all -></a>
       </div>
       <div class="project-list">
-        @for (project of projects; track project.name) {
+        @for (project of projects(); track project.id) {
           <article class="project-item">
             <div class="project-top">
               <div class="project-identity">

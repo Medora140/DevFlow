@@ -1,34 +1,32 @@
 <section class="page">
-    <p class="eyebrow">
-        WORKSPACE / PREFERENCES
-    </p>
-    <h1>Settings</h1>
-    <p class="intro">
-        These settings apply to this in-memory demo session.
-    </p>
+  <p class="eyebrow">WORKSPACE / PREFERENCES</p>
+  <h1>Settings</h1>
+  <p class="intro">These settings apply to this in-memory demo session.</p>
 
-    <article class="panel">
-        <h2>Profile</h2>
-        <label>
-            Display name
-            <input [value]="auth.currentUser()?.name?? ''">
-            <!-- sets the input field's displayed value by reading a signal named currentUser() -->
-        </label>
-        <button type="button" (click)="saveName()">Save name</button>
-        @if (saved()) {
-            <p class="success" role="status">
-                Name updated for this session
-            </p>
-        }
-    </article>
-    <article class="panel">
-        <h2>Workspace preferences</h2>
-        <label class="check">
-            <input type="checkbox" [checked]="emailUpdates()" (change)="emailUpdates.set($any($event.target).checked)"/>
+  <article class="panel">
+    <h2>Profile</h2>
+    <label>
+      Display name
+      <input [value]="auth.currentUser()?.name ?? ''" />
+      <!-- sets the input field's displayed value by reading a signal named currentUser() -->
+    </label>
+    <button type="button" (click)="saveName()">Save name</button>
+    @if (saved()) {
+      <p class="success" role="status">Name updated for this session</p>
+    }
+  </article>
+  <article class="panel">
+    <h2>Workspace preferences</h2>
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="emailUpdates()"
+        (change)="emailUpdates.set($any($event.target).checked)"
+      />
 
-            <!-- [checked]="emailUpdates()": Reads the current boolean value (true or false) from the emailUpdates signal and sets the checkbox's checked state accordingly. -->
-            Show email update preference
-        </label>
-        <p class="note">This preference is a demo control and is not saved after refresh.</p>
-    </article>
+      <!-- [checked]="emailUpdates()": Reads the current boolean value (true or false) from the emailUpdates signal and sets the checkbox's checked state accordingly. -->
+      Show email update preference
+    </label>
+    <p class="note">This preference is a demo control and is not saved after refresh.</p>
+  </article>
 </section>

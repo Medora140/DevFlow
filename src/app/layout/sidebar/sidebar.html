@@ -45,19 +45,17 @@
     </nav>
     <div class="profile">
       <div class="profile-avatar">
-        {{auth.currentUser()?.name?.charAt(0)?? ':)'}}
+        {{ auth.currentUser()?.name?.charAt(0) ?? ':)' }}
       </div>
       <div class="profile-info">
         <strong>
-          {{auth.currentUser()?.name?? 'Guest'}}
+          {{ auth.currentUser()?.name ?? 'Guest' }}
         </strong>
         <span>
-          {{auth.currentUser()?.email ?? ''}}
+          {{ auth.currentUser()?.email ?? '' }}
         </span>
       </div>
-      <button class="sign-out" type="button" (click)="signOut()">
-        Sign out
-      </button>
+      <button class="sign-out" type="button" (click)="signOut()">Sign out</button>
     </div>
   </div>
 </aside>

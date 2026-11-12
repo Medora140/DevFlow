@@ -1,4 +1,4 @@
-import { Component,inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { AuthService } from '../../../core/auth.service';
 
@@ -9,12 +9,12 @@ import { AuthService } from '../../../core/auth.service';
   styleUrl: './settings-page.scss',
 })
 export class SettingsPage {
-  readonly auth=inject(AuthService)
-  readonly name=signal('');
-  readonly saved=signal(false);
-  readonly emailUpdates=signal(true);
+  readonly auth = inject(AuthService);
+  readonly name = signal('');
+  readonly saved = signal(false);
+  readonly emailUpdates = signal(true);
 
-  saveName():void{
+  saveName(): void {
     this.auth.updateName(this.name());
     this.name.set('');
     this.saved.set(true);

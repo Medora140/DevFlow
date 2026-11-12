@@ -3,16 +3,21 @@
     <span>Workspace</span>
     <span class="seperator">/</span>
     <strong>
-      {{pageTitle()}}
+      {{ pageTitle() }}
     </strong>
   </div>
   <div class="topbar-actions">
     <form (submit)="searchTasks($event)" class="search-box">
-      <span aria-hidden="true">⌕</span> 
+      <span aria-hidden="true">⌕</span>
       <!-- ignore element while keeping it on the screen -->
-       <input type="search" placeholder="Search tasks" [value]="searchTerm()" (input)="searchTerm.set($any($event.target).value)">
+      <input
+        type="search"
+        placeholder="Search tasks"
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+      />
 
-       <button type="submit">Search</button>
+      <button type="submit">Search</button>
     </form>
   </div>
 </header>
