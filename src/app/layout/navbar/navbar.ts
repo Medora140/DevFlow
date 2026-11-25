@@ -17,7 +17,8 @@ export class Navbar {
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((event) => event.urlAfterRedirects),
+      map((event) => event.urlAfterRedirects), 
+      // map((event) => event.urlAfterRedirects) extracts the final destination path
     ),
     { initialValue: this.router.url },
   );
@@ -34,7 +35,7 @@ export class Navbar {
   });
 
   searchTasks(event: Event): void {
-    event.preventDefault();
+    event.preventDefault(); //stops the browser from doing a full-page reload when the user submits the search <form>
     const query = this.searchTerm().trim();
     this.router.navigate(['/tasks'], { queryParams: query ? { q: query } : {} });
   }

@@ -11,7 +11,7 @@ export const authGuard: CanActivateChildFn = (_childRoute, state) => {
   if (auth.isAuthenticated()) {
     return true;
   }
-  return router.createUrlTree(['/login'], {
+  return router.createUrlTree(['/login'], {  // cancels the current navigation and instructs the Angular Router to redirect the user to /login while attaching their intended destination as a query parameter.
     queryParams: { returnUrl: state.url },
   });
 };

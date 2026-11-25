@@ -12,6 +12,9 @@ export class AuthService {
 
   readonly currentUser = this.userState.asReadonly();
   readonly isAuthenticated = computed(() => this.userState() !== null);
+  // computed(...) creates a derived signal that calculates its value based on other signals inside it.
+
+  // this.userState() !== null checks if the userState signal holds user data or is empty.
 
   signIn(email: string, name?: string): void {
     const displayName = name?.trim() || email.split('@')[0] || 'User';

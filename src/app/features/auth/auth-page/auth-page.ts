@@ -15,6 +15,7 @@ export class AuthPage {
   private readonly route = inject(ActivatedRoute);
 
   readonly isRegister = this.route.snapshot.data['mode'] === 'register';
+  // this.route.snapshot grabs a one-time, static picture of the current route at the exact moment the component is created
   name = '';
   email = '';
   password = '';
@@ -31,7 +32,7 @@ export class AuthPage {
       !this.password.trim() ||
       (this.isRegister && trimmedName.length < 2)
     ) {
-      form.control.markAllAsTouched();
+      form.control.markAllAsTouched(); //marks every input field inside an Angular NgForm as "touched" so that validation error messages immediately appear on screen
       this.validationMessage = 'Enter a valid email and password to continue.';
       return;
     }

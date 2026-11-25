@@ -1,5 +1,6 @@
 <main class="auth-page">
-  <form #authForm="ngForm" class="auth-card" (ngSubmit)="submit(authForm)" novalidate>
+  <form #authForm="ngForm" class="auth-card" (ngSubmit)="submit(authForm)" novalidate> 
+    <!-- initializes an Angular template-driven form, gives it a local template reference, disables default browser validation, and binds its submission to your component's submit() method. -->
     <!-- event binding -->
     <a routerLink="/login" class="brand">Devflow</a>
     <!--routerLink: navigate to a different page without reloading the web browser  -->

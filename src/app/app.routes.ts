@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { authGuard } from './core/auth.guard';
-export const routes: Routes = [
+export const routes: Routes = 
+// map specific browser URL paths to components, allowing users to move in a single-page application without reloading the page. 
+[
   {
     path: 'login',
     loadComponent: () => import('./features/auth/auth-page/auth-page').then((m) => m.AuthPage),

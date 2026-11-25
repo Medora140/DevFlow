@@ -209,7 +209,9 @@ export class TasksApiService {
   }
 
   // update an existing task
-  updateTask(id: string, changes: Partial<Omit<Task, 'id' | 'projectId' | 'createdAt'>>): void {
+  updateTask(id: string, changes: Partial<Omit<Task, 'id' | 'projectId' | 'createdAt'>>): void 
+  // Partial<Type> makes every remaining property optional
+  {
     this.tasksState.update((tasks) =>
       tasks.map((task) =>
         task.id === id
