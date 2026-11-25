@@ -11,12 +11,15 @@
   min-height: 100vh;
   background: $color-bg;
   color: $color-text-primary;
+  height: 100vh; // Locks shell to exact viewport height
+  overflow: hidden;
 
   .main-area {
     display: flex;
     flex: 1;
     flex-direction: column;
     min-width: 0;
+    overflow-y: scroll;
 
     .page-content {
       flex: 1;
