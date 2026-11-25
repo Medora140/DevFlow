@@ -14,7 +14,7 @@ export class ProjectsApiService {
       progress: 75,
       dueDate: '2026-11-15',
       members: ['MG', 'JD', 'SL'],
-      color: '#ede9fe',
+      color: 'var(--color-primary-tint)',
       createdAt: '2026-01-01',
     },
     {
@@ -25,7 +25,7 @@ export class ProjectsApiService {
       progress: 45,
       dueDate: '2026-12-10',
       members: ['MG', 'MK'],
-      color: '#dbeafe',
+      color: 'var(--color-info-tint)',
       createdAt: '2026-10-04',
     },
     {
@@ -36,7 +36,7 @@ export class ProjectsApiService {
       progress: 100,
       dueDate: '2026-10-20',
       members: ['JD', 'SL', 'MK'],
-      color: '#d1fae5',
+      color: 'var(--color-success-tint)',
       createdAt: '2026-09-20',
     },
     {
@@ -47,7 +47,7 @@ export class ProjectsApiService {
       progress: 0,
       dueDate: '2027-01-15',
       members: ['MG', 'SL'],
-      color: '#ffedd5',
+      color: 'var(--color-warning-tint)',
       createdAt: '2026-10-18',
     },
     {
@@ -58,7 +58,7 @@ export class ProjectsApiService {
       progress: 60,
       dueDate: '2026-11-28',
       members: ['MG', 'Mk', 'JD'],
-      color: '#fce7f3',
+      color: 'var(--color-pink-bg)',
       createdAt: '2026-10-12',
     },
     {
@@ -69,7 +69,7 @@ export class ProjectsApiService {
       progress: 0,
       dueDate: '2027-02-01',
       members: ['SL'],
-      color: '#e0e7ff',
+      color: 'var(--color-primary-indigo-tint)',
       createdAt: '2026-10-20',
     },
   ]);

@@ -1,63 +1,64 @@
+@use 'variables' as *;
+
 .page {
   display: grid;
-  gap: 14px;
-  padding: 28px;
-  color: #202433;
+  gap: 0.875rem;
+  color: $color-text-legacy;
   h1,
   p {
     margin-top: 0;
   }
   .eyebrow {
     margin-bottom: 0;
-    font-size: 12px;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
-    color: #697386;
+    color: $color-text-caption;
   }
   .intro,
   .note {
-    color: #667085;
+    color: $color-text-muted-strong;
   }
   .panel {
     display: grid;
     justify-items: start;
-    gap: 14px;
-    padding: 20px;
-    border-radius: 12px;
-    background: white;
-    border: 1px solid #e5e7eb;
+    gap: 0.875rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background: $color-surface;
+    border: 1px solid $color-border-neutral;
     h2 {
       margin: 0;
-      font-size: 17px;
+      font-size: 1.0625rem;
     }
     label {
       display: grid;
-      gap: 7px;
-      font-size: 14px;
+      gap: 0.4375rem;
+      font-size: 0.875rem;
     }
     .check {
       display: flex;
       align-items: center;
     }
     button {
-      padding: 10px 14px;
+      padding: 0.625rem 0.875rem;
       border: 0;
-      border-radius: 8px;
-      color: white;
+      border-radius: 0.5rem;
+      color: $color-white;
       font: inherit;
       cursor: pointer;
-      background: #5b4bdb;
+      background: $color-primary-brand;
     }
     .success {
       margin: 0;
-      color: #087443;
+      color: $color-success-dark;
     }
   }
 }
 input:not([type='checkbox']) {
   // CSS rule that styles text-like <input> fields while intentionally skipping checkboxes (like your emailUpdates checkbox).
-  width: min(100%, 360px);
-  padding: 10px 12px;
-  border: 1px solid #d8dce5;
-  border-radius: 8px;
+  width: min(100%, 22.5rem);
+  padding: 0.625rem 0.75rem;
+  border: 1px solid $color-border-gray;
+  border-radius: 0.5rem;
   font: inherit;
 }

@@ -1,23 +1,25 @@
+@use 'variables' as *;
+
 .not-found {
   min-height: 100vh;
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 10px;
-  padding: 24px;
+  gap: 0.625rem;
+  padding: 1.5rem;
   text-align: center;
-  color: #202433;
+  color: $color-text-legacy;
 
   .code {
     margin: 0;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.15em;
-    color: #5b4bdb;
+    color: $color-primary-brand;
   }
   a {
-    margin-top: 8px;
-    color: #5b4bdb;
+    margin-top: 0.5rem;
+    color: $color-primary-brand;
   }
 }
 

@@ -88,8 +88,8 @@ export class DashboardPage {
       action: 'completed',
       target: 'Login page UI',
       time: '10 min ago',
-      color: '#dbeafe',
-      textColor: '#1d4ed8',
+      color: 'var(--color-info-tint)',
+      textColor: 'var(--color-info-dark)',
     },
     {
       initials: 'SL',
@@ -97,8 +97,8 @@ export class DashboardPage {
       action: 'created a task in',
       target: 'Mobile Application ',
       time: '35 min ago',
-      color: '#fce7f3',
-      textColor: '#be185d',
+      color: 'var(--color-pink-bg)',
+      textColor: 'var(--color-pink)',
     },
     {
       initials: 'MK',
@@ -106,8 +106,8 @@ export class DashboardPage {
       action: 'updated',
       target: 'API Integration',
       time: '1 hour ago',
-      color: '#d1fae5',
-      textColor: '#047857',
+      color: 'var(--color-success-tint)',
+      textColor: 'var(--color-success)',
     },
   ];
 

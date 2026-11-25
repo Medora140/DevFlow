@@ -1,43 +1,44 @@
+@use 'variables' as *;
+
 .page {
-  padding: 28px;
-  color: #202433;
+  color: $color-text-legacy;
   .eyebrow {
-    font-size: 12px;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
-    color: #697386;
+    color: $color-text-caption;
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 14px;
-    margin-top: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14.375rem), 1fr));
+    gap: 0.875rem;
+    margin-top: 1.5rem;
 
     .card {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 18px;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      background: white;
+      gap: 0.875rem;
+      padding: 1.125rem;
+      border: 1px solid $color-border-neutral;
+      border-radius: 0.75rem;
+      background: $color-surface;
       .avatar {
         display: grid;
         place-items: center;
-        width: 44px;
-        height: 44px;
+        width: 2.75rem;
+        height: 2.75rem;
         border-radius: 50%;
         font-weight: 700;
-        background: #ede9fe;
-        color: #5b4bdb;
+        background: $color-primary-tint;
+        color: $color-primary-brand;
       }
       h2,
       p {
-        margin: 0 0 5px;
-        font-size: 15px;
+        margin: 0 0 0.3125rem;
+        font-size: 0.9375rem;
       }
       .role {
-        font-size: 13px;
-        color: #667085;
+        font-size: 0.8125rem;
+        color: $color-text-muted-strong;
       }
     }
   }
@@ -45,5 +46,5 @@
 
 .intro,
 .card p {
-  color: #667085;
+  color: $color-text-muted-strong;
 }

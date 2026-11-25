@@ -87,7 +87,7 @@ export class ProjectsPage {
       progress: this.projectStatus === 'Completed' ? 100 : 0,
       dueDate: this.projectDueDate,
       members: ['MG'],
-      color: '#ede9fe',
+      color: 'var(--color-primary-tint)',
     });
     this.closeCreateModal();
   }

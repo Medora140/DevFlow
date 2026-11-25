@@ -1,7 +1,15 @@
 <div class="app-shell">
-  <app-sidebar />
+  @if (isNavigationOpen()) {
+    <button
+      class="sidebar-backdrop"
+      type="button"
+      aria-label="Close navigation"
+      (click)="closeNavigation()"
+    ></button>
+  }
+  <app-sidebar [isOpen]="isNavigationOpen()" (closed)="closeNavigation()" />
   <div class="main-area">
-    <app-navbar />
+    <app-navbar [navigationOpen]="isNavigationOpen()" (navigationToggle)="toggleNavigation()" />
     <main class="page-content">
       <router-outlet />
     </main>

@@ -1,7 +1,17 @@
 <header class="topbar">
+  <button
+    class="menu-toggle"
+    type="button"
+    aria-label="Toggle navigation"
+    aria-controls="primary-sidebar"
+    [attr.aria-expanded]="navigationOpen()"
+    (click)="navigationToggle.emit()"
+  >
+    <span aria-hidden="true">☰</span>
+  </button>
   <div class="breadcrumb">
     <span>Workspace</span>
-    <span class="seperator">/</span>
+    <span class="separator">/</span>
     <strong>
       {{ pageTitle() }}
     </strong>
@@ -17,7 +27,7 @@
         (input)="searchTerm.set($any($event.target).value)"
       />
 
-      <button type="submit">Search</button>
+      <button type="submit" aria-label="Search">Search</button>
     </form>
   </div>
 </header>

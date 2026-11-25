@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 :host {
   display: block;
   min-height: 100vh;
@@ -7,30 +9,30 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px;
-  background: #f5f6fa;
+  padding: 1.5rem;
+  background: $color-bg-auth;
 
   .auth-card {
-    width: min(100%, 420px);
+    width: min(100%, 26.25rem);
     display: grid;
-    gap: 16px;
-    padding: 32px;
-    border: 1px solid #e5e7eb;
-    border-radius: 18px;
-    background: white;
-    box-shadow: 0 18px 50px #1f293712;
+    gap: 1rem;
+    padding: 2rem;
+    border: 1px solid $color-border-neutral;
+    border-radius: 1.125rem;
+    background: $color-surface;
+    box-shadow: 0 1.125rem 3.125rem $color-shadow-auth;
     .brand {
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: 800;
       text-decoration: none;
-      color: #5b4bdb;
+      color: $color-primary-brand;
     }
 
     .eyebrow {
-      margin: 4px 0 -12px;
-      font-size: 12px;
+      margin: 0.25rem 0 -0.75rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
-      color: #777;
+      color: $color-text-gray;
     }
     h1,
     .subtitle {
@@ -39,29 +41,29 @@
     .subtitle,
     .hint,
     .switch-link {
-      font-size: 14px;
-      color: #667085;
+      font-size: 0.875rem;
+      color: $color-text-muted-strong;
     }
     label {
       display: grid;
-      gap: 7px;
-      font-size: 14px;
+      gap: 0.4375rem;
+      font-size: 0.875rem;
       font-weight: 600;
     }
     input {
       box-sizing: border-box;
       width: 100%;
-      padding: 11px 12px;
-      border-radius: 8px;
+      padding: 0.6875rem 0.75rem;
+      border-radius: 0.5rem;
       font: inherit;
-      border: 1px solid #d0d5dd;
+      border: 1px solid $color-border-gray-light;
     }
     button {
-      padding: 12px;
+      padding: 0.75rem;
       border: 0;
-      border-radius: 8px;
-      background: #5b4bdb;
-      color: white;
+      border-radius: 0.5rem;
+      background: $color-primary-brand;
+      color: $color-white;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
