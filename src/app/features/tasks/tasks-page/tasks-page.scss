@@ -60,11 +60,11 @@
       color: $color-text-muted-strong;
     }
   }
-}
 
-@media (max-width: 40.625em) {
-  .task {
-    flex-direction: column;
+  @media (max-width: 40.625em) {
+    .task-list .task {
+      flex-direction: column;
+    }
   }
 }
 
